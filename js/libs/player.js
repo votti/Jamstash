@@ -166,6 +166,7 @@ function playSong(el, songid, albumid, title, artist, album, coverart, rating, s
                             $('#NextTrack').click()}); 
 		                  UnityUb.MediaPlayer.onPlayPause (function(){
                             playPauseSong()});
+                      UnityUb.Notification.showNotification(artist, title, coverartFullSrc);
                     }
                 } else { // Loadonly
                     $('#' + songid).addClass('playing');

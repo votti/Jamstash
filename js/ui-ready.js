@@ -107,8 +107,8 @@ $(document).ready(function () {
       ubuntu = false
     }
     if (ubuntu){
-    UnityUb.init({name: "Subsonic2",
- 		iconUrl: "http://tsquillario.github.io/Jamstash/images/play_24x32.png",
+    UnityUb.init({name: "Jamstash",
+ 		iconUrl: "http://ericsembrat.com/wp-content/uploads/2012/06/subsonic.png",
   	onInit: unitySetup()});
     var trackInfo = {title: "Synchronous Grabs on my Heart",
                  album: "Love in the key of Compiz",
