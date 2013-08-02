@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+$(document).ready(function () {
     // Inject Basic Auth
     /*
     $.ajaxSetup({
@@ -93,7 +93,32 @@
             $('#PreviousTrack').click();
         }
     });
-
+    
+    // Ubuntu Unity
+    function unitySetup () {	
+	  };
+    
+    var ubuntu = true
+    try{
+      var UnityUb = external.getUnityObject(1.0); 
+    }
+    catch(err)
+    {
+      ubuntu = false
+    }
+    if (ubuntu){
+    UnityUb.init({name: "Subsonic2",
+ 		iconUrl: "http://tsquillario.github.io/Jamstash/images/play_24x32.png",
+  	onInit: unitySetup()});
+    var trackInfo = {title: "Synchronous Grabs on my Heart",
+                 album: "Love in the key of Compiz",
+                 artist: "Sam Spilsbury"};
+    UnityUb.MediaPlayer.setTrack(trackInfo);
+  	UnityUb.MediaPlayer.onPrevious (function(){$('#PreviousTrack').click();});  
+		UnityUb.MediaPlayer.onNext (function(){$('#NextTrack').click();}); 
+		UnityUb.MediaPlayer.onPlayPause (function(){playPauseSong();});
+    }
+      
     // Table Sorting
     $('#CurrentPlaylistContainer').stupidtable();
     $('#TrackContainer').stupidtable();

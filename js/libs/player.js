@@ -1,6 +1,14 @@
-﻿var scrobbled = false;
+var scrobbled = false;
 var timerid = 0;
 var marquee;
+var ubuntu = true;
+try{
+  var UnityUb = external.getUnityObject(1.0); 
+} 
+catch(err){
+  ubuntu =false
+}
+  
 function getSongData(el, songid, albumid, position, loadonly) {
     var runningVersion = parseVersionString(apiVersion);
     var minimumVersion = parseVersionString('1.8.0');
@@ -139,8 +147,25 @@ function playSong(el, songid, albumid, title, artist, album, coverart, rating, s
                         favorite: false,
                         albumArt: coverartFullSrc
                     }
+                    var trackInfo = {
+                        title: title,
+                        album: album,
+                        artist: artist,
+                        artLocation: coverartFullSrc
+                    }
+                    
                     if (unity) {
                         unity.sendState(playerState);
+                    }
+                    
+                    if (ubuntu){
+                      UnityUb.MediaPlayer.setTrack(trackInfo);
+                      UnityUb.MediaPlayer.onPrevious (function(){
+                            $('#PreviousTrack').click()});  
+                      UnityUb.MediaPlayer.onNext (function(){
+                            $('#NextTrack').click()}); 
+		                  UnityUb.MediaPlayer.onPlayPause (function(){
+                            playPauseSong()});
                     }
                 } else { // Loadonly
                     $('#' + songid).addClass('playing');
